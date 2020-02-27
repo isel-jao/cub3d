@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/26 20:43:19 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:37:26 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int     key_press(int key, void *ml)
     update_player(m);
     ray_render(m);
 	render_sprite(m);
-	 put_mini_map(m);
+	//  put_mini_map(m);
 	mlx_put_image_to_window(m->mlx, m->win, m->img.img, 0, 0);
     return (0);
 }
@@ -79,9 +79,8 @@ int main(int ac, char **av)
 	init_player(&m);
 	update_player(&m);
     ray_render(&m);
-	// printf ("%s   line %d\n", __FILE__, __LINE__);
 	render_sprite(&m);
-    put_mini_map(&m);
+    // put_mini_map(&m);
 	mlx_put_image_to_window(m.mlx, m.win, m.img.img, 0, 0);
 	key_handle(&m);
 	mlx_loop(m.mlx);

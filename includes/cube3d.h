@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:19:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/26 20:08:47 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:18:35 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
 # define TRUE 1
 # define FALSE 0
 
-#define TILE_SIZE 64
+# define MIN() a < b? a: b)
 
 # define NONE 0xFF000000
 # define BLUE   1
@@ -41,12 +42,7 @@
 
 # define WNDW   1600
 # define WNDH	1220
-# define FOV    60. * (M_PI / 180.)
-# define RAYS   800
-#define TW 64
-#define TH 64
-#define MW 24
-#define MH 24
+
 
 
 # define V 2

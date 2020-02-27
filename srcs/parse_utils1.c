@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:21:33 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/25 17:03:52 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:26:15 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ int		ft_texture(t_mlx *m, int i)
 	}
 	if (!ft_strncmp(m->tab[i], "NO", 2))
 		m->path[0] = ft_strdup(tab[1]);
-	else if (!ft_strncmp(m->tab[i], "WE", 2))
-		m->path[1] = ft_strdup(tab[1]);
 	else if (!ft_strncmp(m->tab[i], "SO", 2))
-		m->path[2] = ft_strdup(tab[1]);
+		m->path[1] = ft_strdup(tab[1]);
 	else if (!ft_strncmp(m->tab[i], "EA", 2))
+		m->path[2] = ft_strdup(tab[1]);
+	else if (!ft_strncmp(m->tab[i], "WE", 2))
 		m->path[3] = ft_strdup(tab[1]);
 	else if (m->tab[i][0] == 'S' && m->tab[i][1] == ' ')
 		m->path[4] = ft_strdup(tab[1]);

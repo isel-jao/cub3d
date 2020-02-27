@@ -1,11 +1,11 @@
 R 800 600
 
 NO ./textures/redbrick.xpm
-EA  ./textures/sky.xpm
+EA  ./textures/stone.xpm
 SO ./textures/mossy.xpm
 WE ./textures/wood.xpm
 
-S ./textures/hhh.xpm
+S ./textures/ball.xpm
 
 C 0,100,196
 
@@ -13,6 +13,9 @@ F 255,0,255
 
 
 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 0 0 0 2 0 S 0 0 0 0 0 0 0 2 0 2 0 2 0 2 0 0 0 0 0 0 0 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 2 S 0 2 0 0 1
+1 2 0 0 0 0 2 1
+1 2 0 0 2 0 2 1
+1 2 0 0 0 0 0 1
+1 1 1 1 1 1 1 1

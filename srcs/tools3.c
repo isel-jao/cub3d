@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 14:50:56 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/27 12:16:11 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:19:13 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	init_player(t_mlx *m)
 	m->p.rightmove = 0;
 	m->p.speed = 16.0;
 	m->p.rotspeed = 8. * M_PI / 180.;
-	m->p.fov	= M_PI / 3.;
+	m->p.fov	= M_PI  / 3.;
 		// m->p.fov	= (double)m->w / 1800 * (M_PI / 2.25);
 	// printf ("%s   line %d  fov = %f\n", __FILE__, __LINE__, m->p.fov * 180 / M_PI);
 	m->p.radus = 12;

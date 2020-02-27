@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:45:53 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/26 20:52:42 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:43:30 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int     ft_player(t_mlx *m)
 			if (m->map.map[i][j] == 'N' || m->map.map[i][j] == 'W' || \
 			m->map.map[i][j] == 'S' || m->map.map[i][j] == 'E')
 			{
-				m->p.x = i * 64 + 16;
-				m->p.y = j * 64 + 16;
+				m->p.x = i * 64 + 32;
+				m->p.y = j * 64 + 32;
 				m->p.rotang = get_angel(m->map.map[i][j]);
 				return (0);
 			}	

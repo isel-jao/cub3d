@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:51:46 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/26 20:51:30 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:21:40 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			ft_sdraw(t_mlx *m, t_sprite s)
 	int				j;
 	int loc;
 	i = 0;
-	size = 400. * 64. / s.dist ;
+	size = m->h * 64. / s.dist ;
 	loc = (int)(m->w *( 0.5 + s.ang / 1.0471975512) - size / 2.);
 	while (i < size )
 	{
@@ -137,8 +137,8 @@ void	render_sprite(t_mlx *m)
 		{
 			if (m->map.map[i][j] == '2')
 			{
-				s[count].pos.x = (double)i * TILE_SIZE  + (double)TILE_SIZE / 2.;
-				s[count].pos.y = (double)j * TILE_SIZE  + (double)TILE_SIZE / 2.;
+				s[count].pos.x = (double)i * 64  + (double)64 / 2.;
+				s[count].pos.y = (double)j * 64  + (double)64 / 2.;
 				s[count].dist = sqrt(pow(s[count].pos.x - m->p.x, 2) + pow(s[count].pos.y -m->p.y, 2));
 				count++;
 			}
