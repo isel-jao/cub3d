@@ -1,21 +1,24 @@
-R 800 600
+R 1400   800
 
-NO ./textures/redbrick.xpm
-EA  ./textures/stone.xpm
-SO ./textures/mossy.xpm
-WE ./textures/wood.xpm
+NO  ./xpm/walls/wood7.xpm
+EA  ./xpm/walls/wood6.xpm
+SO ./xpm/walls/wood5.xpm
+WE ./xpm/walls/telep.xpm
 
-S ./textures/ball.xpm
+S ./xpm/sprites/ball.xpm
 
-C 0,100,196
+C 100,100,69
 
-F 255,0,255
+F 0,0,255
 
 
-
-1 1 1 1 1 1 1 1
-1 2 S 0 2 0 0 1
-1 2 0 0 0 0 2 1
-1 2 0 0 2 0 2 1
-1 2 0 0 0 0 0 1
-1 1 1 1 1 1 1 1
+11111111111111111
+11111111111111111
+10000000000000001
+11111111111111111
+11111111111111111
+10000000000000001
+12002002002002001
+10000000000000001
+1000000N000000001
+11111111111111111

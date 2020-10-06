@@ -6,144 +6,160 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:27:09 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/27 12:50:27 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/19 02:54:11 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cube3d.h"
+#include "../includes/cube3d.h"
 
-int			is_up(double ang)
+static int in_map(t_mlx *m, double x, double y)
 {
-	if(ang > 1.57079632679  && ang < 4.71238898038)
+	if (x <= 0 || y <= 0  || x >= 64 * m->map.cols  || y >= 64 * m->map.rows   || 
+	!m->map.map[(int)(x / 64)][(int)(y / 64)] || m->map.map[(int)(x / 64)][(int)(y / 64)] == ' ')
+		return (0);
+	return (1);
+}
+
+int is_up(double ang)
+{
+	if (ang > 1.57079632679 && ang < 4.71238898038)
 		return (1);
 	return (0);
 }
 
-int			is_right(double ang)
+int is_right(double ang)
 {
-	if(ang >= 0  && ang < 3.14159265359)
+	if (ang >= 0 && ang < 3.14159265359)
 		return (1);
 	return (0);
 }
 
-void		renderwall(t_mlx *m,int fact, int col, double d, int side)
+void renderwall(t_mlx *m, int fact, int col, double d, int side)
 {
-	int	start = m->h / 2. - d;
+	int start = m->h / 2. - d;
 	int i;
 	double index;
 	int color;
 
-	i = -1;
-	while (++i < 2 * d)
+	if (g_w)
+		return;
+	i = 0;
+	// while (start + i < 0)
+		// i++;
+	i = start < 0 ? -start : 0;
+	while (i < 2 * d && start + i < m->h - 1)
 	{
 		index = 32. / d * (double)i;
-		if (start + i >= 0 && start + i <= m->h)
-			m->img.data[(start + i) * m->w + col ] = \
-			m->textures[side].data[ (int)index * 64 + fact];
-		// line(m, ft_max(start + i -1 , 0), col, ft_min(start + i, m->h -1), col, 200 * WHITE);
+		// if (start + i >= 0)
+		m->img.data[(start + i) * m->w + col] =
+			m->textures[side].data[(int)index * 64 + fact];
+		i++;
 	}
 }
 
-
-
-void		update_player(t_mlx *m)
+void update_player(t_mlx *m)
 {
 	t_ray ray;
-	double new_x;
-	double new_y;
 	double cast;
+	double incx;
+	double incy;
 
-	m->p.step = m->p.upmoove * m->p.speed;
 	m->p.rotang -= m->p.turndir;
-	new_x = m->p.x + cos(m->p.rotang) * m->p.step;
-	new_y = m->p.y + sin(m->p.rotang) * m->p.step;
+	m->p.step = m->p.upmoove * m->p.speed;
+	incx = cos(m->p.rotang) * m->p.upmoove * m->p.speed + sin(m->p.rotang) * m->p.rightmove * m->p.speed;
+	incy = sin(m->p.rotang) * m->p.upmoove * m->p.speed - cos(m->p.rotang) * m->p.rightmove * m->p.speed;
 	normlize(&m->p.rotang);
-	if (haswall(m, new_x, m->p.y) != '1')
-		m->p.x = new_x;
-	if (haswall(m, m->p.x, new_y) != '1')
-		m->p.y = new_y;
-	
+	if (haswall(m, m->p.x + incx, m->p.y) != '1')
+	// if (in_map(m, m->p.x + incx, m->p.y))
+		m->p.x = m->p.x + incx;
+	if (haswall(m, m->p.x, m->p.y + incy) != '1')
+	// if (in_map(m, m->p.x, m->p.y + incy))
+		m->p.y = m->p.y + incy;
 }
 
-
-
-void	put_mini_map(t_mlx *m)
+void render_mini_map(t_mlx *m)
 {
-	int tile_size = 8;
+	int tile_size = 16;
 	int i;
 	int j;
-	
+
+	if (!g_m)
+		return;
 	i = -1;
-	while  (++i < m->map.cols)
+	double sang = m->p.rotang + m->p.fov / 2.;
+	double inc = m->p.fov / m->w;
+	while (++i < m->w && haswall(m, m->p.x, m->p.y) != '1')
+	{
+		line(m, m->p.x / 4., m->p.y / 4., m->p.x / 4. + cos(sang) * m->dist[i] / 4.,
+			 m->p.y / 4. + sin(sang) * m->dist[i] / 4., 200 * RED + 200 * BLUE);
+		sang -= inc;
+	}
+		line(m, m->p.x / 4., m->p.y / 4., m->p.x / 4. + cos(m->p.rotang) * m->dist[m->w / 2] / 4.,
+		 m->p.y / 4. + sin(m->p.rotang) * m->dist[m->w / 2] / 4., 200 * BLUE);
+	i = -1;
+	while (m->map.map[++i])
 	{
 		j = -1;
-			while (++j < m->map.rows)
-			{
-				int tile_x = i * tile_size; 
-				int tile_y = j * tile_size;
-				if (m->map.map[i][j] == '1')
-					sqr(m,i * tile_size,j * tile_size, tile_size, 200 * WHITE);
-				if (m->map.map[i][j] == '2')
-					sqr(m,i * tile_size,j * tile_size, tile_size, 200 * YELLOW);
-			}
+		while (m->map.map[i][++j])
+		{
+			if (m->map.map[i][j] == '1')
+				sqr(m, i * tile_size, j * tile_size, tile_size, 200 * WHITE);
+			if (m->map.map[i][j] == '2' && !g_s)
+				sqr(m, i * tile_size, j * tile_size, tile_size, 200 * GREEN);
 		}
-	circle(m, m->p.x / 8., m->p.y / 8., m->p.radus / 6., 200 * RED);
-	line(m, m->p.x / 8., m->p.y / 8., m->p.x / 8. + cos(m->p.rotang) * 10., \
-	m->p.y / 8. + sin(m->p.rotang) * 10., 200 * RED);
+	}
+	circle(m, m->p.x / 4., m->p.y / 4., m->p.radus / 3., 200 * RED);
 }
 
-void	randerfloorceil(t_mlx *m)
+void randerfloorceil(t_mlx *m)
 {
 	int x;
 	int y;
 
 	int color;
 	x = -1;
-	while (++x < m->h / 2)
+	while (++x <= m->h / 2)
 	{
 		y = -1;
-		while (++y < m->w - 1)
-			m->img.data[x * m->w + y ] =  m->floorcol;
-		
+		while (++y < m->w)
+			m->img.data[x * m->w + y] = m->cielcol;
 	}
-	while (++x < m->h)
+	// x--;
+	while (++x <= m->h)
 	{
 		y = -1;
-		while (++y < m->w - 1)
-			m->img.data[x * m->w + y ] = m->cielcol;
+		while (++y < m->w )
+			m->img.data[x * m->w + y] = m->floorcol;
 	}
 }
 
-void	ray_render(t_mlx *m)
+void render_walls(t_mlx *m)
 {
 	t_ray ray;
 	int fact;
 	double d;
 	int col;
 
-	m->dist = malloc(sizeof(double) * (m->w + 1));
+	g_i = 0;
 	ray.ang = m->p.rotang + (m->p.fov / 2.);
 	normlize(&ray.ang);
-		randerfloorceil(m);
-	if (haswall(m, m->p.x, m->p.y) != '1')
+	if (in_map(m, m->p.x, m->p.y))
 	{
-			// printf ("%s   line %d w = %d col = %d \n", __FILE__, __LINE__, m->w, col);
 		col = -1;
 		while (++col < m->w)
 		{
-			m->dist[col]= wallcast(m, &ray,&fact);
+			m->dist[col] = Wallcast(m, &ray, &fact);
 			d = m->h * 64. / m->dist[col] / cos(ray.ang - m->p.rotang);
-			if(ray.wallside == V && is_up(ray.ang))
-				renderwall(m,fact, col, d, 0);					
-			if(ray.wallside == V && !is_up(ray.ang))
-				renderwall(m,fact, col, d, 1);					
+			if (ray.wallside == V && is_up(ray.ang))
+				renderwall(m, fact, col, d, 0);
+			if (ray.wallside == V && !is_up(ray.ang))
+				renderwall(m, fact, col, d, 1);
 			if (ray.wallside == H && is_right(ray.ang))
-				renderwall(m,fact, col, d, 2);
+				renderwall(m, fact, col, d, 2);
 			if (ray.wallside == H && !is_right(ray.ang))
-				renderwall(m,fact, col, d, 3);
-			ray.ang -= m->p.fov / m->w ;
+				renderwall(m, fact, col, d, 3);
+			ray.ang -= m->p.fov / m->w;
 		}
 	}
+	// printf("========%f\n", m->dist[m->w - 1]);
 }
-// printf ("%s   line %d\n", __FILE__, __LINE__);
-

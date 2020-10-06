@@ -6,11 +6,13 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/02/26 16:05:58 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/09/19 02:03:50 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # CC	= gcc -Wall -Wextra -Werror
+INCLIB=$(INC)/../lib
+
 AR		= ar rcs
 
 BLACK	= \033[0;30m
@@ -26,12 +28,22 @@ NC		= \033[0m
 NAME = 		cube3d
 HEAD	=	cub3d.h
 SRCS	= 	./srcs/main.c \
-			./srcs/tools.c \
 			./srcs/tools1.c \
-			./srcs/tools.2c \
-	
-			
-			
+			./srcs/tools2.c \
+			./srcs/tools3.c \
+			./srcs/map.c \
+			./srcs/parse.c \
+			./srcs/table_utils.c \
+			./srcs/parse_utils1.c \
+			./srcs/parse_utils2.c \
+			./srcs/sprite.c \
+			./srcs/bmp.c \
+			./srcs/check_touls.c \
+			./srcs/ft_error.c \
+			./srcs/key_handle.c \
+			./srcs/init.c \
+			./srcs/wallcast.c \
+
 
 OBJS    = $(SRCS:.c=.o)
 
@@ -55,11 +67,5 @@ re: fclean all
 	@rm -f $(OBJS)
 	@echo "$(GREEN)ALL DONE$(NC)"
 main: 
-	# @rm -rf a.out
-	# @$(CC) -g main.c libftprintf.a
-	# @gcc -g main.c libftprintf.a
-	# @clear && cc -I /usr/local/include ./srcs/main.c ./srcs/tools1.c ./srcs/tools2.c ./srcs/tools3.c  -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit && ./a.out
-	# @clear && cc -I /usr/local/include ./srcs/main.c  ./srcs/table_utils.c ./srcs/map.c  ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit && ./a.out
-	# @clear && cc -I /usr/local/include ./srcs/main.c ./srcs/tools1.c ./srcs/tools2.c ./srcs/tools3.c ./srcs/table_utils.c ./srcs/map.c ./srcs/textures.c ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit && ./a.out
-	@ cc -I /usr/local/include  ./srcs/*.c ./libft/libft.a ./printf/libftprintf.a \
-	-L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+	@ gcc $(SRCS) ./libft/libft.a ./printf/libftprintf.a \
+	-L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd

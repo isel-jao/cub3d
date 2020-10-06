@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 23:33:25 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/26 14:02:23 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/19 04:45:05 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,44 @@ int		ft_maplen(char *line)
 	{
 		if (line[i] == '0' || line[i] == '1' || line[i] == '2' || \
 		line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || \
-		line[i] == 'E')
+		line[i] == 'E' || line[i] == ' ') 
 			count++;
-		else if (line[i] != ' ')
+		else
 			return (-1);
 		i++;
 	}
 	return (count);
 }
 
-char	*ft_mapline(t_mlx *m, char *s, int *i)
+char	*ft_mapline(t_mlx *m, char *s)
 {
 	char	*col;
 	int		j;
 
-	if (ft_maplen(s) != m->map.rows || !(col = malloc(m->map.rows + 1)))
+	if (!(col = malloc(strlen(s) + 1)))
 		return (NULL);
-	j = 0;
-	while (s[*i] != '\0')
+	j = -1;
+	while (s[++j] != '\0')
 	{
-		if (s[*i] == '0' || s[*i] == '1' || s[*i] == 'N' || s[*i] == 'E' \
-		|| s[*i] == 'S' || s[*i] == 'W' || s[*i] == '2')
-			col[j++] = s[*i];
-		else if (s[*i] != ' ')
+		if (ft_strchr("012NSEW ", s[j]))
+			col[j] = s[j];
+		else
 		{
+			ft_printf("wrong cararchter in map %s  \n", s);
 			free(col);
 			return (NULL);
 		}
-		if (s[*i] == '2')
+		if (s[j] == '2')
 			m->s_num++;
-		if (s[*i] == 'N' || s[*i] == 'E' || s[*i] == 'S' || s[*i] == 'W')
+		if (ft_strchr("NSEW", s[j]))
+		if (s[j] == 'N' || s[j] == 'E' || s[j] == 'S' || s[j] == 'W')
 			m->p_num++;
-		(*i)++;
 	}
 	col[j] = '\0';
 	return (col);
 }
 
-int		ft_map(t_mlx *m, int *i)
+int		parse_map(t_mlx *m, int *i)
 {
 	int		j;
 	char	*tmp;
@@ -71,11 +71,11 @@ int		ft_map(t_mlx *m, int *i)
 	m->map.rows = ft_maplen(m->tab[*i]);
 	m->map.map = new_table();
 	ret = 0;
-	while (!ret && m->tab[*i] && (m->tab[*i][0] == '1' || m->tab[*i][0] == '0'))
+	while (!ret && m->tab[*i] && (m->tab[*i][0] == '1' || m->tab[*i][0] == ' '))
 	{
 		j = 0;
-		if (!(tmp = ft_mapline(m, m->tab[*i], &j)))
-			ret = 2;
+		if (!(tmp = ft_mapline(m, m->tab[*i])))
+			ret = 5;
 		m->map.map = ft_join_table(m->map.map, tmp);
 		free(tmp);
 		*i += 1;

@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 09:57:08 by ylazrek           #+#    #+#             */
-/*   Updated: 2020/02/26 19:37:56 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/18 23:09:03 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ int file_to_tab(char ***tab, char *cub)
 
 	ret = 1;
 	fd = open(cub, O_RDONLY);
-	if (fd == -1)
+	if (fd == -1 || !(*tab = new_table()))
 		return (-1);
-	*tab = new_table();
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);

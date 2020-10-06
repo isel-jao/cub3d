@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:21:33 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/02/27 13:26:15 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/19 04:38:51 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_res(t_mlx *m, int i)
 	if (count_table(tab) != 3)
 	{
 		free_table(tab);
-		return ('R');
+		return (4);
 	}
 	m->w = ft_atoi(tab[1]);
 	m->h = ft_atoi(tab[2]);
@@ -33,7 +33,7 @@ int	ft_res(t_mlx *m, int i)
 	if (m->h > 1400)
 		m->h = 1400;
 	if (m->w <= 0 || m->h <= 0)
-		return (-1);
+		return (3);
 	free_table(tab);
 	return (0);
 }
@@ -49,7 +49,7 @@ int		ft_floorceil(t_mlx *m, int i)
 	if (count_table(tab) != 2)
 	{
 		free_table(tab);
-		return ('T');
+		return (4);
 	}
 	j = 0;
 	r = ft_atoi(tab[1]);
@@ -66,7 +66,7 @@ int		ft_floorceil(t_mlx *m, int i)
 	if (tab[1][j] != '\0' || r > 255 || g > 255 || b > 255)
 	{
 		free_table(tab);
-		return (-1);
+		return (6);
 	}
 	if (tab[0][0] == 'F')
 		m->floorcol = r * 256 * 256 + g * 256 + b;
@@ -84,7 +84,7 @@ int		ft_texture(t_mlx *m, int i)
 	if (count_table(tab) != 2)
 	{
 		free_table(tab);
-		return ('T');
+		return (4);
 	}
 	if (!ft_strncmp(m->tab[i], "NO", 2))
 		m->path[0] = ft_strdup(tab[1]);
