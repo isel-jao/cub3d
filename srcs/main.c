@@ -6,13 +6,11 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 03:40:19 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:34:32 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-
 
 void render(t_mlx *m)
 {
@@ -40,7 +38,10 @@ int main(int ac, char **av)
 		ft_exit(&m);
 	init_env(&m);
 	init_image(&m, ac, av);
+	ft_printf("\nw %d  h %d\n", m.w, m.h);
+	
 	render(&m);
+	// ft_putendl_fd("\nhere\n", 1);
 	key_handle(&m);
 	return (0);
 }

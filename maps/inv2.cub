@@ -1,5 +1,5 @@
 
-R 1600 900
+R 1000 500
 
 NO  ./xpm/walls/wood3.xpm
 EA  ./xpm/walls/wood.xpm

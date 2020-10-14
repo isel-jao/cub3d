@@ -6,18 +6,18 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:19:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 04:31:45 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/14 09:40:04 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXAMPLE_H
 #define EXAMPLE_H
 
-// #include "/home/hi/minilibx/minilibx_linux/mlx_int.h"
-#include "/home/h/minilibx_linux/mlx.h"
-#include "/home/h/minilibx_linux/key_linux.h"
-#include "../libft/libft.h"
+#include "mlx.h"
+#include "keys.h"
+
 #include "../printf/printf.h"
+#include "../libft/libft.h"
 
 #include <math.h>
 #include <stdio.h>

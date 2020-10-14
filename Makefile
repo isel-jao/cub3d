@@ -6,7 +6,7 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/09/19 02:03:50 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/10/14 09:57:49 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,5 +67,8 @@ re: fclean all
 	@rm -f $(OBJS)
 	@echo "$(GREEN)ALL DONE$(NC)"
 main: 
-	@ gcc $(SRCS) ./libft/libft.a ./printf/libftprintf.a \
-	-L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
+	@ gcc -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a \
+	 -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit
+
+
+	# gcc -I /usr/local/include.c main.c  -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit && ./a.out
