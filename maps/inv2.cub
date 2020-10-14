@@ -1,10 +1,10 @@
 
-R 1000 500
+R 2500 1500
 
-NO  ./xpm/walls/wood3.xpm
-EA  ./xpm/walls/wood.xpm
-SO ./xpm/walls/wood2.xpm
-WE ./xpm/walls/wood4.xpm
+NO  ./xpm/walls/stone3.xpm
+EA  ./xpm/walls/stone1.xpm
+SO ./xpm/walls/stone2.xpm
+WE ./xpm/walls/stone5.xpm
 
 F 60,60,60
 S ./xpm/sprites/scream.xpm
