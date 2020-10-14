@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:19:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 09:40:04 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:21:52 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,6 @@ void ft_sprite(t_mlx *m);
 void save_bmp(t_mlx *m, int ac, char **av);
 double Wallcast(t_mlx *m, t_ray *ray, int *fact);
 int ft_error(int err);
-// int in_map(t_mlx *m, double x, double y);
 int ft_check_ext(char const *str, char const *ext);
 void key_handle(t_mlx *m);
 void update(t_mlx *m);

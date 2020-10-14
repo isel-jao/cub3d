@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:51:46 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/06 16:28:26 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:21:42 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void normlize2(double *ang)
 
 void swap_sprite(t_sprite *a, t_sprite *b)
 {
-	// t_sprite *tmp;
 	double tmp;
 	tmp = b->dist;
 	b->dist = a->dist;

@@ -6,7 +6,7 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/10/14 09:57:49 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/10/14 13:25:03 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,15 @@ NC		= \033[0m
 NAME = 		cube3d
 HEAD	=	cub3d.h
 SRCS	= 	./srcs/main.c \
-			./srcs/tools1.c \
 			./srcs/tools2.c \
 			./srcs/tools3.c \
-			./srcs/map.c \
+			./srcs/minimap_tools.c \
+			./srcs/handle_map.c \
+			./srcs/minimap.c \
 			./srcs/parse.c \
 			./srcs/table_utils.c \
 			./srcs/parse_utils1.c \
-			./srcs/parse_utils2.c \
+			./srcs/parse_map.c \
 			./srcs/sprite.c \
 			./srcs/bmp.c \
 			./srcs/check_touls.c \

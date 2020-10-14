@@ -6,13 +6,36 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 10:34:32 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:27:40 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void render(t_mlx *m)
+void ft_free(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+}
+
+void ft_exit(t_mlx *m)
+{
+	int i;
+
+	if (m->tab)
+		free_table(m->tab);
+	if (m->map.map)
+		free_table(m->map.map);
+	i = -1;
+	while (++i < 7)
+		ft_free(m->path[i]);
+	ft_free(m->dist);
+	ft_free(m->spr);
+	if (m)
+	exit(0);
+}
+
+void	render(t_mlx *m)
 {
 	mlx_clear_window(m->mlx, m->win);
 	randerfloorceil(m);
@@ -22,7 +45,7 @@ void render(t_mlx *m)
 	mlx_put_image_to_window(m->mlx, m->win, m->img.img, 0, 0);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_mlx m;
 
@@ -38,10 +61,7 @@ int main(int ac, char **av)
 		ft_exit(&m);
 	init_env(&m);
 	init_image(&m, ac, av);
-	ft_printf("\nw %d  h %d\n", m.w, m.h);
-	
 	render(&m);
-	// ft_putendl_fd("\nhere\n", 1);
 	key_handle(&m);
 	return (0);
 }
