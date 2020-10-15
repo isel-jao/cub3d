@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 11:19:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/15 11:06:36 by isel-jao         ###   ########.fr       */
+/*   Created: 2020/10/15 13:49:54 by isel-jao          #+#    #+#             */
+/*   Updated: 2020/10/15 13:54:20 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXAMPLE_H
 #define EXAMPLE_H
 
-#include "mlx.h"
-#include "key_macos.h"
+// #include "mlx.h"
+// #include "key_macos.h"
+#include "/home/h/minilibx_linux/mlx.h"
+#include "key_linux.h"
 
-#include "../printf/printf.h"
 #include "../libft/libft.h"
+#include "../printf/printf.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -209,12 +211,14 @@ void ft_sprite(t_mlx *m);
 void save_bmp(t_mlx *m, int ac, char **av);
 double Wallcast(t_mlx *m, t_ray *ray, int *fact);
 int ft_error(int err);
+// int in_map(t_mlx *m, double x, double y);
 int ft_check_ext(char const *str, char const *ext);
 void key_handle(t_mlx *m);
 void update(t_mlx *m);
 void render(t_mlx *m);
 int init_player(t_mlx *m);
 void init_image(t_mlx *m, int ac, char **av);
+void normlize2(double *ang);
 
 
 #endif

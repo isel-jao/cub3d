@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 23:11:23 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/15 11:32:10 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/19 17:46:07 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int ft_error(int err)
 	else if (err == 4)
 		ft_printf("to much/few arguments.\n");
 	else if (err == 5)
-		ft_printf("mem allocaion error.\n");
+		ft_printf("map not closed.\n");
 	else if (err == 6)
 		ft_printf("map not closed.\n");
 	else if (err == 7)

@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:45:53 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/15 11:36:58 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/09/19 14:33:42 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int ft_player(t_mlx *m)
 
 	if (m->p_num != 1)
 	{
-		ft_printf("none or more than one player exists!");
+		ft_printf("none or more than one player position!");
 		return (-1);
 	}
 	i = -1;
@@ -39,8 +39,8 @@ int ft_player(t_mlx *m)
 		j = -1;
 		while (m->map.map[i][++j])
 		{
-			if (m->map.map[i][j] == 'N' || m->map.map[i][j] == 'W' || \
-			m->map.map[i][j] == 'S' || m->map.map[i][j] == 'E')
+			if (m->map.map[i][j] == 'N' || m->map.map[i][j] == 'W' ||
+				m->map.map[i][j] == 'S' || m->map.map[i][j] == 'E')
 			{
 				m->p.x = i * 64 + 32;
 				m->p.y = j * 64 + 32;
@@ -64,8 +64,10 @@ static int load_texture(t_mlx *m)
 		ft_printf("error laoding %s\n", m->path[i]);
 		return (-1);
 	}
-	m->textures[i].data = (int *)mlx_get_data_addr(m->textures[i].img, \
-	&m->textures[i].bpp, &m->textures[i].sizeline, &m->textures[i].endian);
+	m->textures[i].data = (int *)mlx_get_data_addr(m->textures[i].img,
+												   &m->textures[i].bpp,
+												   &m->textures[i].sizeline,
+												   &m->textures[i].endian);
 	i++;
 	return (0);
 }
@@ -128,14 +130,13 @@ int check_cols(t_mlx *m)
 				return (-1);
 			while (s[i] && (j < ft_strlen(s[i]) && s[i][j] != ' '))
 				i++;
-			if (j < ft_strlen(s[i - 1]) && s[i - 1][j] != '1' && s[i - 1][j] \
-			!= ' ')
+			if (j < ft_strlen(s[i - 1]) && s[i - 1][j] != '1' && s[i - 1][j] != ' ')
 				return (-1);
 		}
 	}
 	return (0);
 }
-void get_crmax(t_mlx *m)
+int get_crmax(t_mlx *m)
 {
 	int i;
 	int j;

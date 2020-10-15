@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:49:56 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/15 11:29:26 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:33:49 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 // 	return (1);
 // }
 
+int		loop_hook(t_mlx *m)
+{
+	return (0);
+}
 
-void sub_key_press(int key, t_mlx *m, int sp, int r)
+
+int sub_key_press(int key, t_mlx *m, int sp, int r)
 {
 	if (key == K_W)
 		m->p.upmoove = sp;
@@ -45,11 +50,10 @@ int key_press(int key, t_mlx *m)
 	static int sp;
 	static int r;
 
-	m->p.turndir = 0;
 	if (!sp)
 		sp = 8;
 	if (!r)
-		r = 8;
+		r = 16;
 	if (key == K_E && sp < 32)
 		sp++;
 	if (key == K_Q && sp > 1)
@@ -76,6 +80,10 @@ int key_release(int key, void *ml)
 		m->p.rightmove = 0;
 	if (key == K_A)
 		m->p.rightmove = 0;
+	if (key == K_AR_R)
+		m->p.turndir = 0;
+	if (key == K_AR_L)
+		m->p.turndir = 0;
 	if (key == K_ESC)
 		ft_exit(m);
 	return (0);
@@ -83,7 +91,7 @@ int key_release(int key, void *ml)
 
 void key_handle(t_mlx *m)
 {
-	// mlx_loop_hook(m->win, &loop_hook, m);
+	mlx_loop_hook(m->win, &loop_hook, m);
 	mlx_hook(m->win, 2, (1L << 0), &key_press, m);
 	mlx_hook(m->win, 3, (1L << 1), &key_release, m);
 	mlx_loop(m->mlx);
