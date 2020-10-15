@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 09:57:08 by ylazrek           #+#    #+#             */
-/*   Updated: 2020/09/18 23:09:03 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:38:47 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,4 @@ int file_to_tab(char ***tab, char *cub)
 	if (ret == -1)
 		return (-1);
 	return (0);
-}
-void	print_table(char **tab)
-{
-	int i = 0;
-	if (!tab)
-		return;
-	while (tab[i] != NULL)
-		ft_printf("%s\n", tab[i++]);
 }

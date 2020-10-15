@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:54:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 13:20:46 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/15 11:09:30 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void unit_mlx(t_mlx *m)
 	m->map.map = NULL;
 	m->dist = NULL;
 	i = -1;
+	g_s = 0;
 	g_m = 0;
 	while (++i < 7)
 	{

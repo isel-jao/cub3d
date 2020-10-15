@@ -1,5 +1,5 @@
 
-R 600 400
+R 1600 900
 
 NO  ./xpm/walls/wood.xpm
 EA  ./xpm/walls/stone1.xpm

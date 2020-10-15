@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:51:46 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 13:21:42 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/13 16:59:19 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,22 @@ void swap_sprite(t_sprite *a, t_sprite *b)
 	a->pos.y = tmp;
 }
 
-void sort_sprite(t_mlx *m, t_sprite *s)
+void ft_selection_sortt(t_mlx *m, t_sprite *s)
 {
-	int i = 1;
+	int i;
 	int j;
-	while (i < m->s_num)
-	{
-		j = i;
-		while (j > 0)
-		{
-			if (s[j - 1].dist < s[j].dist)
-				swap_sprite(&s[j], &s[j - 1]);
-			j--;
-		}
-		i++;
-	}
-}
+	int index;
 
-unsigned int ft_spixel(t_mlx *m, int index, unsigned int col)
-{
-	if (col == NONE)
-		return (m->img.data[index]);
-	return (col);
+	i = -1;
+	while (++i < m->s_num)
+	{
+		index = i;
+		j = i;
+		while (++j < m->s_num)
+			if (s[index].dist < s[j].dist)
+				index = j;
+		swap_sprite(&s[i], &s[index]);
+	}
 }
 
 void ft_sdraw(t_mlx *m, t_sprite s)
@@ -78,8 +72,7 @@ void ft_sdraw(t_mlx *m, t_sprite s)
 			col = m->textures[4].data[col];
 			index = (h_loc + j) * m->w + w_loc + i;
 			if (index > 0 && index < m->w * m->h && s.dist < m->dist[w_loc + i])
-				// m->img.data[index] = ft_spixel(m, index, col);
-				m->img.data[index] = col == NONE ? m->img.data[index]: col;
+				m->img.data[index] = col == NONE ? m->img.data[index] : col;
 			j++;
 		}
 		i++;
@@ -100,7 +93,10 @@ void render_sprite(t_mlx *m, t_sprite *s)
 		s[i].ang = m->p.rotang - s[i].ang;
 		s[i].h = m->h * 128. / s[i].dist;
 		s[i].w = m->w * 64. / s[i].dist;
-		normlize2(&s[i].ang);
+		if (s[i].ang < -M_PI)
+			s[i].ang += (2.0000 * M_PI);
+		if (s[i].ang > M_PI)
+			s[i].ang -= (2 * M_PI);
 		ft_sdraw(m, s[i]);
 	}
 }
@@ -109,10 +105,9 @@ void render_sprites(t_mlx *m)
 {
 	int i;
 	int j;
+
 	int count;
 
-	if (g_s)
-		return;
 	i = -1;
 	count = 0;
 	while (++i < m->map.cols)
@@ -129,6 +124,6 @@ void render_sprites(t_mlx *m)
 			}
 		}
 	}
-	sort_sprite(m, m->spr);
+	ft_selection_sortt(m, m->spr);
 	render_sprite(m, m->spr);
 }

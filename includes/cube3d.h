@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:19:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 12:21:52 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/15 11:06:36 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define EXAMPLE_H
 
 #include "mlx.h"
-#include "keys.h"
+#include "key_macos.h"
 
 #include "../printf/printf.h"
 #include "../libft/libft.h"

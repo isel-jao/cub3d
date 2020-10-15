@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:52:07 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 13:13:41 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/02/26 17:27:45 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ void	line(t_mlx *m,int x0, int y0, int x1, int y1, int color)
 	incy = 1;
 	if (y1 < y0) incy = -1;
 	if (dx > dy) 
+		// line1(x0, y0, dx, dy, incx, incy, color);
 		line1(m,x0, y0, dx, dy, incx, incy, color);
 	else 
+		// line2(x0, y0, dx, dy, incx, incy, color);
 		line2(m,x0, y0, dx, dy, incx, incy, color);
 }

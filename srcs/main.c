@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 13:27:40 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:35:11 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_exit(t_mlx *m)
 	exit(0);
 }
 
-void	render(t_mlx *m)
+void render(t_mlx *m)
 {
 	mlx_clear_window(m->mlx, m->win);
 	randerfloorceil(m);
@@ -45,7 +45,7 @@ void	render(t_mlx *m)
 	mlx_put_image_to_window(m->mlx, m->win, m->img.img, 0, 0);
 }
 
-int		main(int ac, char **av)
+int main(int ac, char **av)
 {
 	t_mlx m;
 

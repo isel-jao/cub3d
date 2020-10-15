@@ -1,158 +1,86 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 11:45:53 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/14 13:31:58 by isel-jao         ###   ########.fr       */
+/*   Created: 2020/02/22 23:33:25 by isel-jao          #+#    #+#             */
+/*   Updated: 2020/09/19 04:45:05 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-static double get_angel(char c)
+
+
+int		ft_maplen(char *line)
 {
-	if (c == 'N')
-		return (-M_PI);
-	if (c == 'W')
-		return (0);
-	if (c == 'S')
-		return (M_PI / 2.);
-	return (-M_PI / 2.);
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '0' || line[i] == '1' || line[i] == '2' || \
+		line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || \
+		line[i] == 'E' || line[i] == ' ') 
+			count++;
+		else
+			return (-1);
+		i++;
+	}
+	return (count);
 }
 
-int ft_player(t_mlx *m)
+char	*ft_mapline(t_mlx *m, char *s)
 {
-	int i;
-	int j;
+	char	*col;
+	int		j;
 
-	if (m->p_num != 1)
+	if (!(col = malloc(strlen(s) + 1)))
+		return (NULL);
+	j = -1;
+	while (s[++j] != '\0')
 	{
-		ft_printf("none or more than one player position!");
-		return (-1);
-	}
-	i = -1;
-	while (m->map.map[++i])
-	{
-		j = -1;
-		while (m->map.map[i][++j])
+		if (ft_strchr("012NSEW ", s[j]))
+			col[j] = s[j];
+		else
 		{
-			if (m->map.map[i][j] == 'N' || m->map.map[i][j] == 'W' ||
-				m->map.map[i][j] == 'S' || m->map.map[i][j] == 'E')
-			{
-				m->p.x = i * 64 + 32;
-				m->p.y = j * 64 + 32;
-				m->p.rotang = get_angel(m->map.map[i][j]);
-				return (0);
-			}
+			ft_printf("wrong cararchter in map %s  \n", s);
+			free(col);
+			return (NULL);
 		}
+		if (s[j] == '2')
+			m->s_num++;
+		if (ft_strchr("NSEW", s[j]))
+		if (s[j] == 'N' || s[j] == 'E' || s[j] == 'S' || s[j] == 'W')
+			m->p_num++;
 	}
-	return (0);
+	col[j] = '\0';
+	return (col);
 }
 
-static int load_texture(t_mlx *m)
+int		parse_map(t_mlx *m, int *i)
 {
-	static int i = 0;
-	int tab[2];
-	void *img;
-	int fd;
+	int		j;
+	char	*tmp;
+	int		ret;
 
-	if (!(m->textures[i].img = mlx_xpm_file_to_image(m->mlx, m->path[i], \
-	&tab[0], &tab[1])))
-	{
-		ft_printf("error laoding %s\n", m->path[i]);
-		return (-1);
-	}
-	m->textures[i].data = (int *)mlx_get_data_addr(m->textures[i].img, \
-	&m->textures[i].bpp, &m->textures[i].sizeline, &m->textures[i].endian);
-	i++;
-	return (0);
-}
-
-int load_textures(t_mlx *m)
-{
-	int ret;
-	int i;
-
+	m->map.rows = ft_maplen(m->tab[*i]);
+	m->map.map = new_table();
 	ret = 0;
-	i = -1;
-	while (!ret && ++i < 5)
-	{
-		ret = load_texture(m);
-	}
-	return (ret);
-}
-
-int check_rows(t_mlx *m)
-{
-	int i;
-	int j;
-	char **s;
-	s = m->map.map;
-
-	i = -1;
-	while (s[++i])
+	while (!ret && m->tab[*i] && (m->tab[*i][0] == '1' || m->tab[*i][0] == ' '))
 	{
 		j = 0;
-		while (s[i][j])
-		{
-			while (s[i][j] == ' ')
-				j++;
-			if (s[i][j] && s[i][j] != '1')
-				return (-1);
-			while (s[i][j] && s[i][j] != ' ')
-				j++;
-			if (s[i][j - 1] != '1')
-				return (-1);
-		}
+		if (!(tmp = ft_mapline(m, m->tab[*i])))
+			ret = 5;
+		m->map.map = ft_join_table(m->map.map, tmp);
+		free(tmp);
+		*i += 1;
+		m->map.cols++;
 	}
-	return (0);
-}
-int check_cols(t_mlx *m)
-{
-	int i;
-	int j;
-	char **s;
-
-	s = m->map.map;
-	j = -1;
-	while (++j < m->map.rows)
-	{
-		i = 0;
-		while (s[i])
-		{
-			while (s[i] && (j >= ft_strlen(s[i]) || s[i][j] == ' '))
-				i++;
-			if (s[i] && s[i][j] != '1')
-				return (-1);
-			while (s[i] && (j < ft_strlen(s[i]) && s[i][j] != ' '))
-				i++;
-			if (j < ft_strlen(s[i - 1]) && s[i - 1][j] != '1' && s[i - 1][j] != ' ')
-				return (-1);
-		}
-	}
-	return (0);
-}
-void get_crmax(t_mlx *m)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (m->map.map[++i])
-	{
-		if (m->map.rows < strlen(m->map.map[i]))
-			m->map.rows = strlen(m->map.map[i]);
-	}
-	m->map.cols = i;
-}
-
-int ft_check_map(t_mlx *m)
-{
-	get_crmax(m);
-	if (check_cols(m) || check_rows(m))
-		return (ft_error(6));
-	return (0);
+	*i -= 1;
+	return (ret);
 }
