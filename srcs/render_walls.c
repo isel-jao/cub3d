@@ -6,19 +6,11 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:27:09 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 11:55:41 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:11:59 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-int in_map(t_mlx *m, double x, double y)
-{
-	if (x <= 0 || y <= 0 || x >= 64 * m->map.cols || y >= 64 * m->map.rows ||
-		!m->map.map[(int)(x / 64)][(int)(y / 64)] || m->map.map[(int)(x / 64)][(int)(y / 64)] == ' ')
-		return (0);
-	return (1);
-}
 
 void renderwall(t_mlx *m, int fact, int col, double d, int side)
 {
@@ -86,7 +78,7 @@ void render_walls(t_mlx *m)
 	col = -1;
 	while (++col < m->w)
 	{
-		m->dist[col] = Wallcast(m, &ray, &fact);
+		m->dist[col] = wallcast(m, &ray, &fact);
 		d = m->h * 64. / m->dist[col] / cos(ray.ang - m->p.rotang);
 		if (ray.wallside == V && is_up(ray.ang))
 			renderwall(m, fact, col, d, 0);

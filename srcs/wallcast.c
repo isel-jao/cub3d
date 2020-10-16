@@ -6,75 +6,64 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 02:00:44 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 02:01:04 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:40:56 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-static double H_intesect(t_mlx *m, t_ray *ray, int *fact)
+static	double	h_intesect(t_mlx *m, t_ray *ray, int *fact)
 {
-	double dx;
-	double dy;
-	double new_x;
-	double new_y;
-	double deltax;
-	double deltay;
+	t_intersect i;
 
-	deltax = !is_up(ray->ang) ? 64 : -64;
-	deltay = deltax * tan(ray->ang);
-
-	dx = ((int)m->p.x / 64) * 64. - m->p.x;
-	dx = !is_up(ray->ang) ? 64. + dx : dx;
-	dy = dx * tan(ray->ang);
-
-	new_x = m->p.x + dx;
-	new_y = m->p.y + dy;
-	double e = (int)deltax / 64;
-	while (haswall(m, new_x + e, new_y) != '1')
+	i.deltax = !is_up(ray->ang) ? 64 : -64;
+	i.deltay = i.deltax * tan(ray->ang);
+	i.dx = ((int)m->p.x / 64) * 64. - m->p.x;
+	i.dx = !is_up(ray->ang) ? 64. + i.dx : i.dx;
+	i.dy = i.dx * tan(ray->ang);
+	i.new_x = m->p.x + i.dx;
+	i.new_y = m->p.y + i.dy;
+	i.e = (int)i.deltax / 64;
+	while (haswall(m, i.new_x + i.e, i.new_y) != '1')
 	{
-		new_x += deltax;
-		new_y += deltay;
+		i.new_x += i.deltax;
+		i.new_y += i.deltay;
 	}
-	*fact = ((int)(new_y)) % 64;
-	return (sqrt(pow(new_x - m->p.x, 2) + pow(new_y - m->p.y, 2)));
+	*fact = ((int)(i.new_y)) % 64;
+	return (sqrt(pow(i.new_x - m->p.x, 2) + pow(i.new_y - m->p.y, 2)));
 }
-static double V_intesect(t_mlx *m, t_ray *ray, int *fact)
+
+static	double	v_intesect(t_mlx *m, t_ray *ray, int *fact)
 {
-	double deltax;
-	double deltay;
-	double dx;
-	double dy;
-	double new_x;
-	double new_y;
+	t_intersect i;
 
-	deltay = is_right(ray->ang) ? 64 : -64;
-	deltax = deltay / tan(ray->ang);
-
-	dy = ((int)m->p.y / 64) * 64. - m->p.y;
-	dy = is_right(ray->ang) ? 64. + dy : dy;
-	dx = dy / tan(ray->ang);
-	new_y = m->p.y + dy;
-	new_x = m->p.x + dx;
-	double e = (int)deltay / 64;
-	while (haswall(m, new_x, new_y + e) != '1')
+	i.deltay = is_right(ray->ang) ? 64 : -64;
+	i.deltax = i.deltay / tan(ray->ang);
+	i.dy = ((int)m->p.y / 64) * 64. - m->p.y;
+	i.dy = is_right(ray->ang) ? 64. + i.dy : i.dy;
+	i.dx = i.dy / tan(ray->ang);
+	i.new_y = m->p.y + i.dy;
+	i.new_x = m->p.x + i.dx;
+	i.e = (int)i.deltay / 64;
+	while (haswall(m, i.new_x, i.new_y + i.e) != '1')
 	{
-		new_x += deltax;
-		new_y += deltay;
+		i.new_x += i.deltax;
+		i.new_y += i.deltay;
 	}
-	*fact = ((int)(new_x)) % 64;
-	return (sqrt(pow(new_x - m->p.x, 2) + pow(new_y - m->p.y, 2)));
+	*fact = ((int)(i.new_x)) % 64;
+	return (sqrt(pow(i.new_x - m->p.x, 2) + pow(i.new_y - m->p.y, 2)));
 }
-double Wallcast(t_mlx *m, t_ray *ray, int *fact)
+
+double			wallcast(t_mlx *m, t_ray *ray, int *fact)
 {
-	int hfact;
-	int vfact;
-	double vd;
-	double hd;
+	int		hfact;
+	int		vfact;
+	double	vd;
+	double	hd;
 
 	g_i++;
-	vd = V_intesect(m, ray, &vfact);
-	hd = H_intesect(m, ray, &hfact);
+	vd = v_intesect(m, ray, &vfact);
+	hd = h_intesect(m, ray, &hfact);
 	if (vd <= hd)
 	{
 		ray->wallside = H;

@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:49:54 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 11:18:54 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:38:11 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,18 @@ typedef struct s_ray
 // 	double e_y;
 // 	double color;
 // } t_line;
+
+typedef struct s_intersect
+{
+	double dx;
+	double dy;
+	double deltax;
+	double deltay;
+	double new_y;
+	double new_x;
+	double e;
+	
+} t_intersect;
 
 typedef struct s_map
 {

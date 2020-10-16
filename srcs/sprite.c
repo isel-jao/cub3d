@@ -6,15 +6,16 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:51:46 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 12:34:48 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:00:28 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	swap_sprite(t_sprite *a, t_sprite *b)
+static	void	swap_sprite(t_sprite *a, t_sprite *b)
 {
 	double tmp;
+
 	tmp = b->dist;
 	b->dist = a->dist;
 	a->dist = tmp;
@@ -26,28 +27,26 @@ void	swap_sprite(t_sprite *a, t_sprite *b)
 	a->pos.y = tmp;
 }
 
-void	ft_selection_sortt(t_mlx *m, t_sprite *s)
+static	void	ft_selection_sort(t_mlx *m, t_sprite *s)
 {
 	int i;
 	int j;
-	int index;
+	int ind;
 
 	i = -1;
 	while (++i < m->s_num)
 	{
-		index = i;
+		ind = i;
 		j = i;
 		while (++j < m->s_num)
-			if (s[index].dist < s[j].dist)
-				index = j;
-		swap_sprite(&s[i], &s[index]);
+			if (s[ind].dist < s[j].dist)
+				ind = j;
+		swap_sprite(&s[i], &s[ind]);
 	}
 }
 
-void	ft_sdraw(t_mlx *m, t_sprite s)
+static	void	ft_sdraw(t_mlx *m, t_sprite s, int col, int ind)
 {
-	int col;
-	int index;
 	int i;
 	int j;
 	int w_loc;
@@ -63,16 +62,16 @@ void	ft_sdraw(t_mlx *m, t_sprite s)
 		{
 			col = 64 * floor(64 * (double)j / s.h) + (double)i / s.w * 64;
 			col = m->textures[4].data[col];
-			index = (h_loc + j) * m->w + w_loc + i;
-			if (index > 0 && index < m->w * m->h && s.dist < m->dist[w_loc + i])
-				m->img.data[index] = col == NONE ? m->img.data[index] : col;
+			ind = (h_loc + j) * m->w + w_loc + i;
+			if (ind > 0 && ind < m->w * m->h && s.dist < m->dist[w_loc + i])
+				m->img.data[ind] = col == NONE ? m->img.data[ind] : col;
 			j++;
 		}
 		i++;
 	}
 }
 
-void	render_sprite(t_mlx *m, t_sprite *s)
+static	void	render_sprite(t_mlx *m, t_sprite *s)
 {
 	int i;
 
@@ -92,18 +91,18 @@ void	render_sprite(t_mlx *m, t_sprite *s)
 			s[i].ang += (2.0000 * M_PI);
 		if (s[i].ang > M_PI)
 			s[i].ang -= (2 * M_PI);
-		ft_sdraw(m, s[i]);
+		ft_sdraw(m, s[i], 0, 0);
 	}
 }
 
-void	render_sprites(t_mlx *m)
+void			render_sprites(t_mlx *m)
 {
 	int i;
 	int j;
-	int count;
+	int c;
 
 	i = -1;
-	count = 0;
+	c = 0;
 	while (++i < m->map.cols)
 	{
 		j = -1;
@@ -111,13 +110,14 @@ void	render_sprites(t_mlx *m)
 		{
 			if (m->map.map[i][j] == '2')
 			{
-				m->spr[count].pos.x = (double)i * 64 + (double)64 / 2.;
-				m->spr[count].pos.y = (double)j * 64 + (double)64 / 2.;
-				m->spr[count].dist = sqrt(pow(m->spr[count].pos.x - m->p.x, 2) + pow(m->spr[count].pos.y - m->p.y, 2));
-				count++;
+				m->spr[c].pos.x = (double)i * 64 + (double)64 / 2.;
+				m->spr[c].pos.y = (double)j * 64 + (double)64 / 2.;
+				m->spr[c].dist = sqrt(pow(m->spr[c].pos.x - m->p.x, 2) \
+				+ pow(m->spr[c].pos.y - m->p.y, 2));
+				c++;
 			}
 		}
 	}
-	ft_selection_sortt(m, m->spr);
+	ft_selection_sort(m, m->spr);
 	render_sprite(m, m->spr);
 }

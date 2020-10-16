@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   key_linux.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouklich <oouklich@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2019/12/28 22:20:10 by oouklich         ###   ########.fr       */
+/*   Created: 2020/10/16 12:49:35 by isel-jao          #+#    #+#             */
+/*   Updated: 2020/10/16 12:49:36 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef KEY_LINUX_H
 # define KEY_LINUX_H

@@ -6,15 +6,15 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 09:57:08 by ylazrek           #+#    #+#             */
-/*   Updated: 2020/10/16 09:20:49 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:03:45 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cube3d.h"
+#include "../includes/cube3d.h"
 
 int		count_table(char **tab)
 {
-	int i;
+	int	i;
 
 	if (!tab)
 		return (0);
@@ -26,7 +26,7 @@ int		count_table(char **tab)
 
 void	free_table(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i] != NULL)
@@ -39,9 +39,9 @@ void	free_table(char **tab)
 
 char	**new_table(void)
 {
-	char	**tab;
+	char **tab;
 
-	tab = (char**)malloc(sizeof(char*) * 1);
+	tab = (char **)malloc(sizeof(char *) * 1);
 	tab[0] = NULL;
 	return (tab);
 }
@@ -54,7 +54,7 @@ char	**ft_join_table(char **tab, char *str)
 
 	i = 0;
 	len = count_table(tab);
-	new_t = (char**)malloc(sizeof(char*) * (len + 2));
+	new_t = (char **)malloc(sizeof(char *) * (len + 2));
 	while (tab[i] != NULL)
 	{
 		new_t[i] = ft_strdup(tab[i]);
@@ -66,7 +66,7 @@ char	**ft_join_table(char **tab, char *str)
 	return (new_t);
 }
 
-int file_to_tab(char ***tab, char *cub)
+int		file_to_tab(char ***tab, char *cub)
 {
 	char	*line;
 	int		fd;
