@@ -6,7 +6,7 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/10/16 08:49:41 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/10/16 11:25:10 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS	= 	./srcs/main.c \
 			./srcs/init.c \
 			./srcs/wallcast.c \
 			./srcs/minimap_tools.c \
+			./srcs/minimap.c \
 
 
 OBJS    = $(SRCS:.c=.o)

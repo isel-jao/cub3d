@@ -6,15 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:21:33 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 04:38:51 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:45:22 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cube3d.h"
+#include "../includes/cube3d.h"
 
-
-
-int	ft_res(t_mlx *m, int i)
+int ft_res(t_mlx *m, int i)
 {
 	char **tab;
 
@@ -37,11 +35,15 @@ int	ft_res(t_mlx *m, int i)
 	free_table(tab);
 	return (0);
 }
-int		ft_floorceil(t_mlx *m, int i)
+// int sub_floorceil(t_mlx *m, int i)
+// {
+	
+// }
+int ft_floorceil(t_mlx *m, int i)
 {
-	int	r;
-	int	g;
-	int	b;
+	int r;
+	int g;
+	int b;
 	int j;
 	char **tab;
 
@@ -62,7 +64,7 @@ int		ft_floorceil(t_mlx *m, int i)
 	j++;
 	b = ft_atoi(&tab[1][j]);
 	while (ft_strchr("0123456789", tab[1][j]) && tab[1][j])
-		j++;	
+		j++;
 	if (tab[1][j] != '\0' || r > 255 || g > 255 || b > 255)
 	{
 		free_table(tab);
@@ -76,7 +78,7 @@ int		ft_floorceil(t_mlx *m, int i)
 	return (0);
 }
 
-int		ft_texture(t_mlx *m, int i)
+int ft_texture(t_mlx *m, int i)
 {
 
 	char **tab;

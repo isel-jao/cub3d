@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 23:11:23 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 10:51:12 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:35:25 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_error(int err)
 	if (err == 0)
 		return (0);
 	if (err == 1)
-		ft_printf("wrong map format.\n");
+		ft_printf("enable to get data from  map.\n");
 	else if (err == 2)
 		ft_printf("wrong second argument.\n");
 	else if (err == 3)

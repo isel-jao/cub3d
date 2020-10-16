@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:49:54 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:17:15 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:18:54 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,15 @@ typedef struct s_ray
 	int dir;
 	int wallside;
 } t_ray;
+
+// typedef struct s_line
+// {
+// 	double s_x;
+// 	double s_y;
+// 	double e_x;
+// 	double e_y;
+// 	double color;
+// } t_line;
 
 typedef struct s_map
 {

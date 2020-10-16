@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:52:07 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:09:25 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:20:49 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ void	line(t_mlx *m,int x0, int y0, int x1, int y1, int color)
 	int dy;
 	int incx;
 	int incy;
-	t_line line;
+	// t_line line;
 	
 
 	dx = abs(x1-x0);
-	line.dx = abs(x1-x0);
+	// line.dx = abs(x1-x0);
 	dy = abs(y1-y0);
-	line.dy = abs(y1-y0);
+	// line.dy = abs(y1-y0);
 	incx = 1;
-	line.incx = 1;
+	// line.incx = 1;
 	if (x1 < x0) incx = -1;
 	incy = 1;
 	if (y1 < y0) incy = -1;
