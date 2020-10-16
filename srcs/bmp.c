@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:44:08 by asegovia          #+#    #+#             */
-/*   Updated: 2020/10/13 18:00:34 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:59:25 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void bmp_image(t_mlx *m, int fd)
 		x = 0;
 		while (x < m->w)
 		{
-			write(fd, &m->img.data[size - (y * m->w + m->w - x)],
-				  4);
+			write(fd, &m->img.data[size - (y * m->w + m->w - x)], 4);
 			x++;
 		}
 		y++;
