@@ -6,13 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:44:08 by asegovia          #+#    #+#             */
-/*   Updated: 2020/10/16 09:59:25 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 10:43:49 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void bmp_image(t_mlx *m, int fd)
+void	bmp_image(t_mlx *m, int fd)
 {
 	int y;
 	int x;
@@ -34,7 +34,7 @@ void bmp_image(t_mlx *m, int fd)
 	}
 }
 
-void bmp_header(t_mlx *m, int fd)
+void	bmp_header(t_mlx *m, int fd)
 {
 	int header_size;
 	int plane;
@@ -52,16 +52,16 @@ void bmp_header(t_mlx *m, int fd)
 		write(fd, "\0", 1);
 }
 
-void creat_bmp(t_mlx *m)
+void	creat_bmp(t_mlx *m)
 {
 	int size;
 	int fd;
 	int empty;
 
-	empty = 54;    
+	empty = 54;
 	fd = open("save.bmp", O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0640);
 	size = 54 + (4 * (m->w * m->h));
-	write(fd, "BM", 2);                    
+	write(fd, "BM", 2);
 	write(fd, &size, 4);
 	write(fd, "\0\0\0\0", 4);
 	write(fd, &empty, 4);
@@ -70,11 +70,10 @@ void creat_bmp(t_mlx *m)
 	close(fd);
 }
 
-void save_bmp(t_mlx *m, int ac, char **av)
+void	save_bmp(t_mlx *m, int ac, char **av)
 {
-
 	if (ac < 2 || ft_strcmp(av[2], "--save"))
-		return;
+		return ;
 	ft_printf("creating save.pmp        ");
 	randerfloorceil(m);
 	render_walls(m);

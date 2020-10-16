@@ -6,16 +6,16 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 11:20:54 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:25:49 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 10:46:43 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-static int load_texture(t_mlx *m)
+static	int		load_texture(t_mlx *m)
 {
-	static int i = 0;
-	int tab[2];
+	static int	i = 0;
+	int			tab[2];
 
 	if (!(m->textures[i].img = mlx_xpm_file_to_image(m->mlx, m->path[i], \
 	&tab[0], &tab[1])))
@@ -29,21 +29,19 @@ static int load_texture(t_mlx *m)
 	return (0);
 }
 
-int load_textures(t_mlx *m)
+int				load_textures(t_mlx *m)
 {
-	int ret;
-	int i;
+	int	ret;
+	int	i;
 
 	ret = 0;
 	i = -1;
 	while (!ret && ++i < 5)
-	{
 		ret = load_texture(m);
-	}
 	return (ret);
 }
 
-static double get_angel(char c)
+static	double	get_angel(char c)
 {
 	if (c == 'N')
 		return (-M_PI);
@@ -54,7 +52,7 @@ static double get_angel(char c)
 	return (-M_PI / 2.);
 }
 
-int ft_player(t_mlx *m)
+int				ft_player(t_mlx *m)
 {
 	int i;
 	int j;
@@ -83,9 +81,10 @@ int ft_player(t_mlx *m)
 	return (0);
 }
 
-int ft_check(t_mlx *m)
+int				ft_check(t_mlx *m)
 {
 	int ret;
+
 	ret = 0;
 	ret = ft_check_map(m);
 	if (!ret)

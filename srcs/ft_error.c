@@ -6,16 +6,16 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 23:11:23 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:07:56 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 10:51:12 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int ft_error(int err)
+int	ft_error(int err)
 {
 	if (err == 0)
-	return (0);
+		return (0);
 	if (err == 1)
 		ft_printf("wrong map format.\n");
 	else if (err == 2)

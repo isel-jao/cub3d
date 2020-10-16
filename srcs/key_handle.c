@@ -6,22 +6,11 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:49:56 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:26:17 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 10:55:03 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-// int		red_cross(void *mlx)
-// {
-// 	t_mlx	*b;
-
-// 	b = (t_mx*)mlx;
-// 	b->ctx->red_cross = 1;
-// 	exit_cube(mlx, 0, "Exit From Red Cross", 0);
-// 	return (1);
-// }
-
 
 static void	sub_key_press(int key, t_mlx *m, int sp, int r)
 {
@@ -38,14 +27,15 @@ static void	sub_key_press(int key, t_mlx *m, int sp, int r)
 	if (key == K_AR_L)
 		m->p.turndir -= m->p.rotspeed * r;
 	if (key == K_I)
-		g_m ^= 1;	
+		g_m ^= 1;
 }
-int key_press(int key, t_mlx *m)
+
+static int	key_press(int key, t_mlx *m)
 {
 	static int sp;
 	static int r;
 
-		m->p.turndir = 0;
+	m->p.turndir = 0;
 	if (!sp)
 		sp = 8;
 	if (!r)
@@ -63,7 +53,8 @@ int key_press(int key, t_mlx *m)
 	render(m);
 	return (0);
 }
-int key_release(int key, void *ml)
+
+static int	key_release(int key, void *ml)
 {
 	t_mlx *m;
 
@@ -81,7 +72,7 @@ int key_release(int key, void *ml)
 	return (0);
 }
 
-void key_handle(t_mlx *m)
+void		key_handle(t_mlx *m)
 {
 	mlx_hook(m->win, 2, (1L << 0), &key_press, m);
 	mlx_hook(m->win, 3, (1L << 1), &key_release, m);

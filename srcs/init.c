@@ -6,13 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:54:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 09:59:10 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 10:52:33 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void unit_mlx(t_mlx *m)
+void	unit_mlx(t_mlx *m)
 {
 	int i;
 
@@ -39,7 +39,7 @@ void unit_mlx(t_mlx *m)
 	}
 }
 
-int init_env(t_mlx *m)
+int		init_env(t_mlx *m)
 {
 	m->p.radus = 40;
 	m->p.turndir = 0;
@@ -52,15 +52,14 @@ int init_env(t_mlx *m)
 	m->p.dir = 9;
 	m->dist = malloc(sizeof(double) * (m->w + 1));
 	m->spr = malloc(sizeof(t_sprite) * (m->s_num + 1));
-
 	return (0);
 }
 
-void init_image(t_mlx *m, int ac, char **av)
+void	init_image(t_mlx *m, int ac, char **av)
 {
 	m->img.img = mlx_new_image(m->mlx, m->w, m->h);
 	m->img.data = (int *)mlx_get_data_addr(m->img.img, \
 	&(m->img.bpp), &(m->img.sizeline), &(m->img.endian));
-	save_bmp(m,ac, av);
+	save_bmp(m, ac, av);
 	m->win = mlx_new_window(m->mlx, m->w, m->h, "cube3D");
 }
