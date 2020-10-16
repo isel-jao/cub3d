@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 08:22:13 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:35:16 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main(int ac, char **av)
 {
 	t_mlx m;
 
-	if (ft_check_ext(av[1], ".cub"))
+	if (ac == 1 || ft_check_ext(av[1], ".cub"))
 		return (ft_error(1));
 	if (ac > 2 && ft_strcmp(av[2], "--save"))
 		return (ft_error(2));
@@ -65,4 +65,3 @@ int main(int ac, char **av)
 	key_handle(&m);
 	return (0);
 }
-// ft_printf("\n%s   %s  %d\n", __FILE__, __FUNCTION__, __LINE__);

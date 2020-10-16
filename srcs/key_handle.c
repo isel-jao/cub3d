@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:49:56 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 08:21:09 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:26:17 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@
 // 	exit_cube(mlx, 0, "Exit From Red Cross", 0);
 // 	return (1);
 // }
-
-int		loop_hook(t_mlx *m)
-{
-	return (0);
-}
 
 
 static void	sub_key_press(int key, t_mlx *m, int sp, int r)

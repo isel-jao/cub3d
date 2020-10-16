@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:49:54 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 08:09:29 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:17:15 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int ft_res(t_mlx *m, int i);
 int ft_floorceil(t_mlx *m, int i);
 int load_textures(t_mlx *m);
 int ft_check_map(t_mlx *m);
-static double get_angel(char c);
+// static double get_angel(char c);
 int ft_player(t_mlx *m);
 int ft_maplen(char *line);
 char *ft_mapline(t_mlx *m, char *s);

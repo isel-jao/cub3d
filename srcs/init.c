@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 01:54:13 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 16:36:18 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:14:30 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void unit_mlx(t_mlx *m)
 
 int init_env(t_mlx *m)
 {
-	int ret;
 	m->p.radus = 40;
 	m->p.turndir = 0;
 	m->p.upmoove = 0;

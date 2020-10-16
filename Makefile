@@ -6,7 +6,7 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/10/16 08:21:55 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/10/16 08:49:41 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,9 @@ SRCS	= 	./srcs/main.c \
 			./srcs/parse.c \
 			./srcs/table_utils.c \
 			./srcs/parse_utils1.c \
-			./srcs/parse_utils2.c \
 			./srcs/sprite.c \
 			./srcs/bmp.c \
-			./srcs/check_touls.c \
+			./srcs/check_utils.c \
 			./srcs/check.c \
 			./srcs/ft_error.c \
 			./srcs/key_handle.c \
@@ -68,7 +67,9 @@ re: fclean all
 	@rm -f $(OBJS)
 	@echo "$(GREEN)ALL DONE$(NC)"
 mac: 
-	@gcc -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit && rm *.o
+	@gcc -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit -o cube3D
+macos: 
+	@gcc -Wall -Werror -Wextra -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit -o cube3D
 main: 
 	@ gcc $(SRCS) ./libft/libft.a ./printf/libftprintf.a \
 	-L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd

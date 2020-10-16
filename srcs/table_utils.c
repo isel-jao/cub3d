@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 09:57:08 by ylazrek           #+#    #+#             */
-/*   Updated: 2020/10/06 23:38:47 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:20:49 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	**ft_join_table(char **tab, char *str)
 	int		len;
 	char	**new_t;
 	int		i;
-	int		j;
 
 	i = 0;
 	len = count_table(tab);

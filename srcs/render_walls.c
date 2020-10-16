@@ -6,13 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:27:09 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 08:17:10 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:20:23 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-static int in_map(t_mlx *m, double x, double y)
+int in_map(t_mlx *m, double x, double y)
 {
 	if (x <= 0 || y <= 0 || x >= 64 * m->map.cols || y >= 64 * m->map.rows ||
 		!m->map.map[(int)(x / 64)][(int)(y / 64)] || m->map.map[(int)(x / 64)][(int)(y / 64)] == ' ')
@@ -40,8 +40,6 @@ void renderwall(t_mlx *m, int fact, int col, double d, int side)
 
 void update_player(t_mlx *m)
 {
-	t_ray ray;
-	double cast;
 	double incx;
 	double incy;
 
@@ -97,7 +95,6 @@ void randerfloorceil(t_mlx *m)
 	int x;
 	int y;
 
-	int color;
 	x = -1;
 	while (++x <= m->h / 2)
 	{
