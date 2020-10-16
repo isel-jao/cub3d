@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:27:09 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 11:23:31 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:55:41 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int in_map(t_mlx *m, double x, double y)
 		return (0);
 	return (1);
 }
-
-
 
 void renderwall(t_mlx *m, int fact, int col, double d, int side)
 {

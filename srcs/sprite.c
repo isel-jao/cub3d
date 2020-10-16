@@ -6,21 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:51:46 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/13 16:59:19 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 12:34:48 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void normlize2(double *ang)
-{
-	if (*ang < -M_PI)
-		*ang += (2.0000 * M_PI);
-	if (*ang > M_PI)
-		*ang -= (2 * M_PI);
-}
-
-void swap_sprite(t_sprite *a, t_sprite *b)
+void	swap_sprite(t_sprite *a, t_sprite *b)
 {
 	double tmp;
 	tmp = b->dist;
@@ -34,7 +26,7 @@ void swap_sprite(t_sprite *a, t_sprite *b)
 	a->pos.y = tmp;
 }
 
-void ft_selection_sortt(t_mlx *m, t_sprite *s)
+void	ft_selection_sortt(t_mlx *m, t_sprite *s)
 {
 	int i;
 	int j;
@@ -52,14 +44,15 @@ void ft_selection_sortt(t_mlx *m, t_sprite *s)
 	}
 }
 
-void ft_sdraw(t_mlx *m, t_sprite s)
+void	ft_sdraw(t_mlx *m, t_sprite s)
 {
-	unsigned int col;
+	int col;
 	int index;
 	int i;
 	int j;
 	int w_loc;
 	int h_loc;
+
 	w_loc = (int)(m->w * (0.5 + s.ang / 1.0471975512) - s.w / 2.);
 	i = w_loc < 0 ? -w_loc : 0;
 	while (i < s.w && w_loc + i < m->w)
@@ -79,9 +72,11 @@ void ft_sdraw(t_mlx *m, t_sprite s)
 	}
 }
 
-void render_sprite(t_mlx *m, t_sprite *s)
+void	render_sprite(t_mlx *m, t_sprite *s)
 {
-	int i = -1;
+	int i;
+
+	i = -1;
 	while (++i < m->s_num)
 	{
 		s[i].dir.x = (s[i].pos.x - m->p.x) / s[i].dist;
@@ -101,11 +96,10 @@ void render_sprite(t_mlx *m, t_sprite *s)
 	}
 }
 
-void render_sprites(t_mlx *m)
+void	render_sprites(t_mlx *m)
 {
 	int i;
 	int j;
-
 	int count;
 
 	i = -1;

@@ -6,13 +6,13 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:21:33 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/16 11:45:22 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:55:24 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int ft_res(t_mlx *m, int i)
+int			ft_res(t_mlx *m, int i)
 {
 	char **tab;
 
@@ -35,17 +35,33 @@ int ft_res(t_mlx *m, int i)
 	free_table(tab);
 	return (0);
 }
-// int sub_floorceil(t_mlx *m, int i)
-// {
-	
-// }
-int ft_floorceil(t_mlx *m, int i)
+
+static	int	get_rgb(char **tab, int *r, int *g, int *b)
 {
-	int r;
-	int g;
-	int b;
 	int j;
-	char **tab;
+
+	j = 0;
+	*r = ft_atoi(tab[1]);
+	while (ft_strchr("0123456789", tab[1][j]))
+		j++;
+	j++;
+	*g = ft_atoi(&tab[1][j]);
+	while (ft_strchr("0123456789", tab[1][j]))
+		j++;
+	j++;
+	*b = ft_atoi(&tab[1][j]);
+	while (ft_strchr("0123456789", tab[1][j]) && tab[1][j])
+		j++;
+	return (j);
+}
+
+int			ft_floorceil(t_mlx *m, int i)
+{
+	int		r;
+	int		g;
+	int		b;
+	int		j;
+	char	**tab;
 
 	tab = ft_split(m->tab[i], ' ');
 	if (count_table(tab) != 2)
@@ -53,18 +69,7 @@ int ft_floorceil(t_mlx *m, int i)
 		free_table(tab);
 		return (4);
 	}
-	j = 0;
-	r = ft_atoi(tab[1]);
-	while (ft_strchr("0123456789", tab[1][j]))
-		j++;
-	j++;
-	g = ft_atoi(&tab[1][j]);
-	while (ft_strchr("0123456789", tab[1][j]))
-		j++;
-	j++;
-	b = ft_atoi(&tab[1][j]);
-	while (ft_strchr("0123456789", tab[1][j]) && tab[1][j])
-		j++;
+	j = get_rgb(tab, &r, &g, &b);
 	if (tab[1][j] != '\0' || r > 255 || g > 255 || b > 255)
 	{
 		free_table(tab);
@@ -78,10 +83,10 @@ int ft_floorceil(t_mlx *m, int i)
 	return (0);
 }
 
-int ft_texture(t_mlx *m, int i)
+int			ft_texture(t_mlx *m, int i)
 {
-
 	char **tab;
+
 	tab = ft_split(m->tab[i], ' ');
 	if (count_table(tab) != 2)
 	{

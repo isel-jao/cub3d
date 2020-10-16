@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 14:50:56 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/13 16:50:03 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:57:44 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ void normlize(double *ang)
 	if (*ang < 0.0000)
 		*ang += (2.0000 * M_PI);
 	if (*ang > (2.0000 * M_PI))
+		*ang -= (2 * M_PI);
+}
+
+void normlize2(double *ang)
+{
+	if (*ang < -M_PI)
+		*ang += (2.0000 * M_PI);
+	if (*ang > M_PI)
 		*ang -= (2 * M_PI);
 }
 
