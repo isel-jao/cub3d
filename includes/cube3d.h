@@ -6,17 +6,17 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:49:54 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/15 13:54:20 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:09:29 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXAMPLE_H
 #define EXAMPLE_H
 
-// #include "mlx.h"
-// #include "key_macos.h"
-#include "/home/h/minilibx_linux/mlx.h"
-#include "key_linux.h"
+#include "mlx.h"
+#include "key_macos.h"
+// #include "/home/h/minilibx_linux/mlx.h"
+// #include "key_linux.h"
 
 #include "../libft/libft.h"
 #include "../printf/printf.h"

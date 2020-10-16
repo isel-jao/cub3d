@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:45:53 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/09/19 14:33:42 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:13:25 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int check_cols(t_mlx *m)
 	}
 	return (0);
 }
-int get_crmax(t_mlx *m)
+static void get_crmax(t_mlx *m)
 {
 	int i;
 	int j;

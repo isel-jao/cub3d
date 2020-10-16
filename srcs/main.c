@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:24:58 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/06 23:35:11 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:22:13 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void ft_exit(t_mlx *m)
 	ft_free(m->dist);
 	ft_free(m->spr);
 	if (m)
-	exit(0);
+		exit(0);
 }
 
 void render(t_mlx *m)
@@ -65,3 +65,4 @@ int main(int ac, char **av)
 	key_handle(&m);
 	return (0);
 }
+// ft_printf("\n%s   %s  %d\n", __FILE__, __FUNCTION__, __LINE__);

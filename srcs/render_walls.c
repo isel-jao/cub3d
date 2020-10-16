@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:27:09 by isel-jao          #+#    #+#             */
-/*   Updated: 2020/10/13 16:49:55 by isel-jao         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:17:10 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void randerfloorceil(t_mlx *m)
 		while (++y < m->w)
 			m->img.data[x * m->w + y] = m->cielcol;
 	}
-	while (++x <= m->h)
+	while (++x < m->h)
 	{
 		y = -1;
 		while (++y < m->w)
