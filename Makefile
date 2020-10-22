@@ -6,7 +6,7 @@
 #    By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 12:43:37 by isel-jao          #+#    #+#              #
-#    Updated: 2020/10/17 19:39:07 by isel-jao         ###   ########.fr        #
+#    Updated: 2020/10/22 16:13:23 by isel-jao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,56 +67,4 @@ $(NAME): $(OBJ) $(INC_DIR) make_libft make_printf
 clean:
 	$(RM_DIR) $(OBJ_DIR)
 	$(MAKE) clean -C libft/
-	$(MAKE) clean -C minilibx_macos/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# $(NAME): $(OBJS)
-# 	@$(AR) $(NAME) $^
-# 	@echo "$(YELLOW)ALL$(NC)"
-# %.o : %.c
-# 	@$(CC) $(FLAGS) -c $<
-
-# clean:
-# 	@rm -f $(OBJS)
-# 	@echo "$(YELLOW)cleen$(NC)"
-	
-# fclean: clean
-# 	@rm -f $(NAME)
-# 	@echo "$(YELLOW)fcleen$(NC)"
-# re: fclean all
-# 	@rm -f $(OBJS)
-# 	@echo "$(GREEN)ALL DONE$(NC)"
-# mac: 
-# 	@gcc -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit -o cube3D
-# macos: 
-# 	@gcc -Wall -Werror -Wextra -I /usr/local/include.c $(SRCS) ./libft/libft.a ./printf/libftprintf.a -L /usr/local/lib/ -lmlx -framework OpenGl -framework Appkit -o cube3D
-# main: 
-# 	@ gcc $(SRCS) ./libft/libft.a ./printf/libftprintf.a \
-# 	-L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
+	$(MAKE) clean -C printf/
